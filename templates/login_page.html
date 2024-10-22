@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Авторизация</title>
+  <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Rubik';
+      font-size: 16px;
+    }
+    
+
+    .header {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+
+    .container {
+      border: 2px solid black;
+      border-radius: 0;
+      padding: 20px;
+      text-align: center;
+      margin: 50px auto;
+      width: 300px;
+    }
+
+    .container input[type="text"],
+    .container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      font-family: 'Rubik';
+    }
+
+    .container button {
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Rubik';
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="{{ url_for('show_map')}}">Карта опросов</a>
+  </div>
+
+  <div class="container">
+    <h2>Авторизация</h2>
+    
+    <form method="POST" action="{{ url_for('login') }}">
+      <input type="text" id="login" placeholder="Логин" name="login" required>
+      <input type="password" placeholder="Пароль" id="password" name="password" required>
+      <button type="submit">Войти</button>
+      
+    </form>
+    <a href="{{ url_for('start_page')}}">Регистрация</a>
+  </div>
+</body>
+</html>

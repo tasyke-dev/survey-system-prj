@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Личный кабинет</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    .chart-container {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+    }
+    .tag-cloud-container {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+      background-image: url('cloud.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tag-cloud .tag {
+      font-size: 16px;
+      padding: 5px 10px;
+      margin: 5px;
+      background-color: #000;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    #sidebar {
+      width: 200px;
+      height: 100vh;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+      float: left;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    .content h2 {
+      margin-top: 0;
+    }
+    .chart-container {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+    }
+    #content {
+      margin-left: 200px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #sidebar ul li {
+      margin-bottom: 10px;
+    }
+    
+    #sidebar ul li a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+      background-color: #555;
+      border-radius: 5px;
+    }
+    
+    #sidebar ul li a:hover {
+      background-color: #777;
+    }
+    
+    #logo {
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <img src="../static/images/icons/Право На Город!.png">
+    <ul>
+      <li><a href="#">Карта опроса</a></li>
+      <li><a href="#">Лента опроса</a></li>
+      <li><a href="#">Добавить опрос</a></li>
+      <li><a href="#">Публикации</a></li>
+      <li><a href="#">Комментарии</a></li>
+      <li><a href="#">Выход</a></li>
+    </ul>
+  </div>
+  <div id="content">
+    <div class="chart-container">
+      <canvas id="pie-chart"></canvas>
+    </div>
+    
+  </div>
+
+
+
+
+
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Пример данных графика
+  var chartData = {
+  labels: ["Telegram bot", "Веб-приложение", "Андроид приложение"],
+  datasets: [{
+    label: "Количество пользователей",
+    data: [50, 100, 75],
+    backgroundColor: ["#36a2eb", "#ffce56", "#2ecc71"]
+  }]
+};
+
+var ctx = document.getElementById("pie-chart").getContext("2d");
+var pieChart = new Chart(ctx, {
+  type: 'pie',
+  data: chartData,
+  options: {
+    tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          var dataset = data.datasets[tooltipItem.datasetIndex];
+          var total = dataset.data.reduce(function(previousValue, currentValue) {
+            return previousValue + currentValue;
+          });
+          var currentValue = dataset.data[tooltipItem.index];
+          var percentage = ((currentValue / total) * 100).toFixed(1) + "%";
+          return data.labels[tooltipItem.index] + ": " + percentage;
+        }
+      }
+    }
+  }
+});
+
+</script>
+
+</html>
